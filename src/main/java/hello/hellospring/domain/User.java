@@ -1,5 +1,6 @@
 package hello.hellospring.domain;
 
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -14,7 +15,7 @@ public class User {
 
     private Long accu_credit;
 
-    private Long rank;
+    private Long ranking;
 
     public String getId() {
         return id;
@@ -48,11 +49,11 @@ public class User {
         this.accu_credit = accu_credit;
     }
 
-    public Long getRank() {
-        return rank;
+    public Long getRanking() {
+        return ranking;
     }
 
-    public void setRank(Long rank) {
-        this.rank = rank;
+    public void setRanking(Long rank) {
+        this.ranking = rank;
     }
 }

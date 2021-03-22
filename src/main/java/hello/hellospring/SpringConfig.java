@@ -1,7 +1,6 @@
 package hello.hellospring;
 
 import hello.hellospring.repository.sendygo.LocationRepository;
-import hello.hellospring.repository.sendygo.LocationRepositoryImpl;
 import hello.hellospring.repository.sendygo.UserRepository;
 import hello.hellospring.repository.sendygo.UserRepositoryImpl;
 import hello.hellospring.service.LocationService;
@@ -36,15 +35,20 @@ public class SpringConfig {
 //    public MemberService memberService() {
 //        return new MemberService(memberRepository);
 //    }
-    @Bean
-    public UserService userService() {
-        return new UserService(userRepository());
-    }
 
-    @Bean
-    LocationService locationService() {
-        return new LocationService(locationRepository(), userService());
-    }
+
+//    @Bean
+//    public UserService userService() {
+//        return new UserService();
+//    }
+
+
+//
+//    @Bean
+//    LocationService locationService() {
+//        return new LocationService(locationRepository(), userService());
+//    }
+
 
 //    @Bean
 //    public MemberRepository memberRepository() {
@@ -54,16 +58,16 @@ public class SpringConfig {
 //        return new JpaMemberRepository(em);
 //
 //    }
-
-    @Bean
-    public UserRepository userRepository() {
-        return new UserRepositoryImpl(dataSource);
-    }
-
-    @Bean
-    public LocationRepository locationRepository() {
-        return new LocationRepositoryImpl(dataSource);
-    }
+//
+//    @Bean
+//    public UserRepository userRepository() {
+//        return new UserRepositoryImpl(dataSource);
+//    }
+//
+//    @Bean
+//    public LocationRepository locationRepository() {
+//        return new LocationRepositoryImpl(dataSource);
+//    }
 
     /*
     스프링을 왜 쓰는가? 스프링이 뭐가 좋은가?

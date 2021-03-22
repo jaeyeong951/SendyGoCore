@@ -3,24 +3,30 @@ package hello.hellospring.service;
 import hello.hellospring.domain.History;
 import hello.hellospring.domain.Location;
 import hello.hellospring.domain.User;
-import hello.hellospring.repository.sendygo.LocationRepository;
+import hello.hellospring.repository.sendygo.HistoryJpaRepository;
+import hello.hellospring.repository.sendygo.LocationJpaQueryRepository;
+import hello.hellospring.repository.sendygo.LocationJpaRepository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Transactional
+@Service
 public class LocationService {
-    private final LocationRepository locationRepository;
+    private final HistoryJpaRepository historyJpaRepository;
+    private final LocationJpaQueryRepository locationJpaRepository;
     private final UserService userService;
 
-    public LocationService(LocationRepository locationRepository, UserService userService) {
-        this.locationRepository = locationRepository;
+    public LocationService(HistoryJpaRepository historyJpaRepository, LocationJpaQueryRepository locationJpaRepository, UserService userService) {
+        this.locationJpaRepository = locationJpaRepository;
+        this.historyJpaRepository = historyJpaRepository;
         this.userService = userService;
     }
 
     public List<Location> getLocation() {
-        return locationRepository.getLocation();
+        return locationJpaRepository.getLocation();
     }
 
     public History insertHistory(String id,
@@ -34,7 +40,7 @@ public class LocationService {
         Optional<User> user = userService.findUserById(id);
         if(user.isPresent()) {
             History history = new History();
-            history.setId(id);
+            history.setUserID(id);
             history.setHistoryTime(htime);
             history.setHistoryDate(hdate);
             history.setReward(reward);
@@ -42,7 +48,7 @@ public class LocationService {
             history.setDest(dest);
             history.setTime(time);
             history.setDistance(distance);
-            locationRepository.insertHistory(history);
+            historyJpaRepository.save(history);
 
             userService.updateUser(id, reward + user.get().getCredit());
 
@@ -55,6 +61,6 @@ public class LocationService {
     }
 
     public List<History> getHistoryByUserID(String id) {
-        return locationRepository.getHistoryByUserId(id);
+        return historyJpaRepository.getHistoryByUserID(id);
     }
 }

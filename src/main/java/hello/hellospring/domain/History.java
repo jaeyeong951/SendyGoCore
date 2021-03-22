@@ -1,14 +1,17 @@
 package hello.hellospring.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class History {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idx;
-    private String id;
+    private String userID;
     private String src;
     private String dest;
     private String distance;
@@ -17,12 +20,12 @@ public class History {
     private Long reward;
     private String time;
 
-    public String getId() {
-        return id;
+    public String getUserID() {
+        return userID;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setUserID(String id) {
+        this.userID = id;
     }
 
     public String getSrc() {

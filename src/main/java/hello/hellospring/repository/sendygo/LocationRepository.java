@@ -7,6 +7,4 @@ import java.util.List;
 
 public interface LocationRepository {
     List<Location> getLocation();
-    History insertHistory(History history);
-    List<History> getHistoryByUserId(String id);
 }
